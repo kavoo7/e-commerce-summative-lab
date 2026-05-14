@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useProducts } from '../hooks/useProducts';
-import ProductForm from '../components/ProductForm';
+import { useProducts } from '../Hooks/UseProduct';
+import ProductForm from '../Components/productform';
 import { Edit2, Trash2 } from 'lucide-react';
 
 const AdminPage = () => {

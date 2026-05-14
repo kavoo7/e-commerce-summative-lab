@@ -1,25 +1,19 @@
-                                                                                                                                                                              import { useState, useEffect } from 'react';
+                                 
+  import { useState } from 'react';
+
+const getInitialFormData = (initialData) => ({
+  name: initialData?.name || '',
+  description: initialData?.description || '',
+  price: initialData?.price ? initialData.price.toString() : '',
+  category: initialData?.category || '',
+  image: initialData?.image || '',
+  rating: initialData?.rating || 0,
+  reviews: initialData?.reviews || 0,
+  isFavorite: initialData?.isFavorite || false
+});
 
 const ProductForm = ({ onSubmit, initialData = null, isEditing = false, onCancel }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    price: '',
-    category: '',
-    image: '',
-    rating: 0,
-    reviews: 0,
-    isFavorite: false
-  });
-
-  useEffect(() => {
-    if (initialData) {
-      setFormData({
-        ...initialData,
-        price: initialData.price.toString(),
-      });
-    }
-  }, [initialData]);
+  const [formData, setFormData] = useState(() => getInitialFormData(initialData));
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

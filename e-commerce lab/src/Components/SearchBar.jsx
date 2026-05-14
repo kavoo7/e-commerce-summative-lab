@@ -1,4 +1,6 @@
-                                                                                                                                                                                    import { Search } from 'lucide-react';
+             
+             
+import { Search } from 'lucide-react';
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
   return (
     <div className="relative w-full max-w-md">
