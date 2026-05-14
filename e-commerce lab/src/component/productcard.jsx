@@ -1,4 +1,5 @@
-                                                                                                                                                                   import { Heart, Star } from 'lucide-react';
+  
+  import { Heart, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {

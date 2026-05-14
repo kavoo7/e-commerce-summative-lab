@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Store from "./pages/Store";
-import ProductDetail from "./pages/ProductDetail";
-import Admin from "./pages/Admin";
+import Navbar from "./component/Navbar";
+import LandingPage from "./pages/LandingPage";
+import ProductPage from "./pages/ProductPage";
+import ProductDetails from "./pages/ProductDetails";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -33,10 +33,10 @@ function App() {
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Store />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/products" element={<ProductPage />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </main>
       </div>

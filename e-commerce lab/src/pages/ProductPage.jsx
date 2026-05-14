@@ -1,6 +1,7 @@
-import { useProducts } from '../hooks/useProducts';
-import ProductCard from '../components/ProductCard';
-import SearchBar from '../components/SearchBar';
+import { useState, useMemo } from 'react';
+import { useProducts } from '../Hooks/UseProduct';
+import ProductCard from '../component/productcard';
+import SearchBar from '../component/SearchBar';
 import { ChevronRight } from 'lucide-react';
 
 const ProductPage = () => {

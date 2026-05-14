@@ -1,18 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingBag, Moon, Sun, LayoutDashboard } from "lucide-react";
-import { useState, useEffect } from "react";
 
-const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
+const Navbar = ({ darkMode, setDarkMode }) => {
   const location = useLocation();
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 

@@ -1,4 +1,5 @@
-                                                                                                                                                                              import { useState, useEffect } from 'react';
+
+import { useState, useEffect } from 'react';
 
 const ProductForm = ({ onSubmit, initialData = null, isEditing = false, onCancel }) => {
   const [formData, setFormData] = useState({
