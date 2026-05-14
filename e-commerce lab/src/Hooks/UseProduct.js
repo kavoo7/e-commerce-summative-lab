@@ -1,79 +1,92 @@
 import { useState, useEffect, useCallback } from 'react';
+import mockProducts from '../data/mockProducts';
 
-const API_URL = 'http://localhost:5000/products';
+const STORAGE_KEY = 'ecommerce_lab_products';
+
+const loadProductsFromStorage = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch (error) {
+    console.warn('Failed to load products from localStorage:', error);
+  }
+  return mockProducts;
+};
+
+const saveProductsToStorage = (products) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+  } catch (error) {
+    console.warn('Failed to save products to localStorage:', error);
+  }
+};
 
 export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchProducts = useCallback(async () => {
-    setLoading(true);
+  useEffect(() => {
     try {
-      const response = await fetch(API_URL);
-      if (!response.ok) throw new Error('Failed to fetch products');
-      const data = await response.json();
-      setProducts(data);
+      const initialProducts = loadProductsFromStorage();
+      setProducts(initialProducts);
       setError(null);
     } catch (err) {
-      setError(err.message);
+      setError('Failed to load products');
     } finally {
       setLoading(false);
     }
   }, []);
 
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+  const updateStoredProducts = useCallback((nextProducts) => {
+    if (typeof nextProducts === 'function') {
+      setProducts((prev) => {
+        const updatedProducts = nextProducts(prev);
+        saveProductsToStorage(updatedProducts);
+        return updatedProducts;
+      });
+    } else {
+      setProducts(nextProducts);
+      saveProductsToStorage(nextProducts);
+    }
+  }, []);
 
   const addProduct = async (productData) => {
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-      });
-      if (!response.ok) throw new Error('Failed to add product');
-      const newProduct = await response.json();
-      setProducts((prev) => [...prev, newProduct]);
-      return newProduct;
-    } catch (err) {
-      setError(err.message);
-      throw err;
-    }
+    const newProduct = {
+      ...productData,
+      id: String(Date.now()),
+    };
+
+    updateStoredProducts((prev) => [...prev, newProduct]);
+    return newProduct;
   };
 
   const updateProduct = async (id, updates) => {
-    try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updates),
-      });
-      if (!response.ok) throw new Error('Failed to update product');
-      const updatedProduct = await response.json();
-      setProducts((prev) => prev.map((p) => (p.id === id ? updatedProduct : p)));
-      return updatedProduct;
-    } catch (err) {
-      setError(err.message);
-      throw err;
-    }
+    const updatedProducts = products.map((product) =>
+      product.id === id ? { ...product, ...updates } : product
+    );
+
+    updateStoredProducts(updatedProducts);
+    return updatedProducts.find((product) => product.id === id);
   };
 
   const deleteProduct = async (id) => {
+    const filteredProducts = products.filter((product) => product.id !== id);
+    updateStoredProducts(filteredProducts);
+  };
+
+  const refreshProducts = () => {
+    setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) throw new Error('Failed to delete product');
-      setProducts((prev) => prev.filter((p) => p.id !== id));
+      const stored = loadProductsFromStorage();
+      setProducts(stored);
+      setError(null);
     } catch (err) {
-      setError(err.message);
-      throw err;
+      setError('Failed to refresh products');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,6 +97,6 @@ export const useProducts = () => {
     addProduct,
     updateProduct,
     deleteProduct,
-    refreshProducts: fetchProducts,
+    refreshProducts,
   };
 };
