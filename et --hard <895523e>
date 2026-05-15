@@ -1,0 +1,23 @@
+[33m153df5c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix: Remove @tailwindcss/vite and use standard PostCSS/Tailwind setup
+[33ma84c4d1[m Install required dependencies: @tailwindcss/vite, react-router-dom, lucide-react
+[33m895523e[m Refactor product management to use local storage and add mock product data
+[33m8b52510[m Add Tailwind CSS and update routing with new components
+[33m9030dbb[m Add Tailwind CSS and update routing with new components
+[33m426dc95[m[33m ([m[1;31morigin/my-app[m[33m)[m Add files via upload
+[33m6274587[m Merge pull request #11 from kavoo7/ft-SearchBar
+[33m10ce7c3[m Merge pull request #10 from kavoo7/feature/clyde-changes
+[33m37629c0[m Merge pull request #8 from kavoo7/ft-AdminPage
+[33mb89ff4f[m Add Admin page
+[33m3af5d67[m[33m ([m[1;31morigin/feature/clyde-changes[m[33m)[m Add App.jsx routing, App.css and index.css styling
+[33ma0f0e11[m Merge pull request #6 from kavoo7/ft-UseProduct
+[33m20b89d7[m Add UseProduct Hook
+[33m343a9c9[m Merge pull request #5 from kavoo7/winnies-branch
+[33me6aaecc[m[33m ([m[1;31morigin/winnies-branch[m[33m)[m added the code to display products and their details
+[33m5910f41[m Merge pull request #4 from kavoo7/main
+[33m0c66bf0[m Merge pull request #3 from kavoo7/ft-database-json
+[33md95bcd7[m[33m ([m[1;31morigin/ft-database-json[m[33m)[m Added json database
+[33mb2697ed[m Merge pull request #2 from kavoo7/ft-landing-page
+[33m6541fba[m[33m ([m[1;31morigin/ft-landing-page[m[33m)[m Added featuures in landing page
+[33md6df3bd[m Merge pull request #1 from kavoo7/ft-adding-navbar
+[33m601c102[m[33m ([m[1;31morigin/ft-adding-navbar[m[33m)[m Added navbar toggle feature
+[33mb72f283[m - Set up Vite configuration for development environment - Establish global CSS variables for theming and styling
