@@ -31,9 +31,11 @@ export const useProducts = () => {
   useEffect(() => {
     try {
       const initialProducts = loadProductsFromStorage();
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setProducts(initialProducts);
       setError(null);
     } catch (err) {
+      console.error(err);
       setError('Failed to load products');
     } finally {
       setLoading(false);
@@ -84,6 +86,7 @@ export const useProducts = () => {
       setProducts(stored);
       setError(null);
     } catch (err) {
+      console.error(err);
       setError('Failed to refresh products');
     } finally {
       setLoading(false);
