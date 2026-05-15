@@ -15,6 +15,7 @@ const ProductForm = ({ onSubmit, initialData = null, isEditing = false, onCancel
 
   useEffect(() => {
     if (initialData) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFormData({
         ...initialData,
         price: initialData.price.toString(),
