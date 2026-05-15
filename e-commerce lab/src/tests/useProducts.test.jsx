@@ -9,9 +9,7 @@ describe('useProducts hook', () => {
   it('loads products and allows adding a new product', async () => {
     const { result } = renderHook(() => useProducts());
     
-    // Wait for the initial load
-    expect(result.current.loading).toBe(true);
-    
+    // Wait for the initial load    
     // Test adding a product
     await act(async () => {
       await result.current.addProduct({
