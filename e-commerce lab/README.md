@@ -35,8 +35,6 @@ Run the local Vite development server:
 ```bash
 npm run dev
 ```
-Open your browser and navigate to `http://localhost:5173/` (or the port specified in your terminal) to view the app!
-
 ---
 
 ## 🧪 Testing & Linting
@@ -47,16 +45,10 @@ This project uses **Vitest** and **React Testing Library** for automated testing
   ```bash
   npm run test
   ```
-- **Run the linter:**
-  ```bash
-  npm run lint
-  ```
 
 ---
 
-## 🌿 Git & Branch Management
-
-When working with a team, you'll often need to switch between branches to review features or pull the latest bug fixes.
+##  Git & Branch Management
 
 **Check your current branch:**
 ```bash
@@ -70,13 +62,13 @@ git branch -a
 
 **Switch to an existing branch** (e.g., to review the `resolving-errors` branch):
 ```bash
-git checkout resolving-errors
+git checkout branch-name
 ```
 
 **Pull the latest updates from a branch:**
 If a teammate pushed a fix, you need to pull it into your local environment to see the changes:
 ```bash
-git pull origin resolving-errors
+git pull origin branch-name
 ```
 
 **Create a new branch for your feature:**
