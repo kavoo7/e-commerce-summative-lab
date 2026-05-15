@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../component/productcard';
 
 const mockProduct = {
   id: "1",
@@ -26,7 +26,7 @@ describe('ProductCard Component', () => {
     
     expect(screen.getByText('Test Jacket')).toBeInTheDocument();
     expect(screen.getByText(/150.00/)).toBeInTheDocument();
-    expecigt(screen.getByRole('img', { name: /Test Jacket/i })).toHaveAttribute('src', 'https://example.com/image.jpg');
+    expect(screen.getByRole('img', { name: /Test Jacket/i })).toHaveAttribute('src', 'https://example.com/image.jpg');
   });
 
   it('renders a link to the product details page', () => {
